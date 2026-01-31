@@ -1,9 +1,17 @@
+import AddProductForm from "@/components/AddProductForm";
+import AuthButton from "../components/AuthButton"
 import { Button } from "@/components/ui/button";
-import { Bell, LogIn, Rabbit, Shield } from "lucide-react";
+import { createClient } from "@/utils/supabase/server";
+import { Bell, Icon, LogIn, Rabbit, Shield } from "lucide-react";
 import Image from "next/image";
 
-export default function Home() {
-  const user = null;
+export default async function Home() {
+  const supabase = await createClient();
+
+  const{
+    data:{user},
+  } = await supabase.auth.getUser();
+
   const products = [];
   
   const FEATURES = [
@@ -38,14 +46,7 @@ export default function Home() {
           />
         </div>
       {/* Auth Button */}
-      <Button 
-        variant = "default"
-        size="sm"
-        className="bg-[#A594F9] hover:bg-[#9381F7] gap-2"
-      >
-        <LogIn className="w-4 h-4"/>
-        Sign In
-      </Button>
+      <AuthButton user={user}/>
       </div>
     </header>
     <section className="py-20 px-4">
@@ -58,16 +59,20 @@ export default function Home() {
           Stop checking prices every day. Track once, get alerts, and save money effortlessly.
         </p>
 
-        {/* Add Product Form */}
+        <AddProductForm/>
         {/* Features */}
         {products.length === 0 && (
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mt-16">
-            {FEATURES.map(({icon: icons,title, description})=>(
+            {FEATURES.map(({icon: Icon,title, description})=>(
               <div
                 key={title}
                 className="bg-white p-6 rounded-xl border border-gray-200"  
               >
-
+                <div className="w-12 h-12 bg-violet-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                  <Icon className="w-6 h-6 text-violet-800"/>
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2">{title}</h3>
+                <p className="text-sm text-gray-600">{description}</p>
               </div>
             ))}
           </div>
