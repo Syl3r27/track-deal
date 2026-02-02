@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "components/AddProductForm.jsx", "app/page.jsx", "components/AddProductForm.jsx", "components/AuthButton.js", "components/AuthModel.js", "components/AuthModel.js"  ],
   "exclude": ["node_modules"]
 }

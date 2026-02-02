@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { signOut } from "@/app/actions";
-import {AuthModel} from "./AuthModel"
+import { AuthModal } from "./AuthModal";
 import { Button } from "@/components/ui/button";
 import { LogIn, LogOut } from "lucide-react";
 
@@ -26,13 +26,13 @@ export default function AuthButton({ user }) {
         onClick={() => setShowAuthModel(true)}
         variant="default"
         size="sm"
-        className="bg-orange-500 hover:bg-orange-600 gap-2"
+        className="bg-violet-500 hover:bg-violet-600 gap-2"
       >
         <LogIn className="w-4 h-4" />
         Sign In
       </Button>
 
-      <AuthModel
+      <AuthModal
         isOpen={showAuthModel}
         onClose={() => setShowAuthModel(false)}
       />

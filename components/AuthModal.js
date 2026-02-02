@@ -9,7 +9,7 @@ import { Button } from "./ui/button"
 import { createClient } from "@/utils/supabase/client"
 
 
-export function AuthModel({isOpen, onClose}) {
+export function AuthModal({isOpen, onClose}) {
   const supabase = createClient();
 
   const handleGoogleLogin = async ()=>{
